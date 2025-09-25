@@ -1,14 +1,21 @@
+from fraction import hsum
+
 def main():
     while True:
-        print("\n1. Problem 1 (Fractions)")
+        print("\nMake selection:\n")
+        print("1. Problem 1 (Fractions)")
         print("2. Problem 2 (Primality)")
         print("3. Problem 5 (RSA)")
-        print("4. Quit")
+        print("4. Quit\n")
 
         choice = input("Enter option: ")
 
+        #handle hsum call
         if choice == "1":
-            print("Problem 1 not implemented yet")
+            n = int(input("Enter a value for 'n': "))
+            m = int(input("Enter a value for 'm': "))
+            result = hsum(n, m)
+            print(f"\nResult:\nThe {m}-digit of H({n}) is {result}")
         elif choice == "2":
             print("Problem 2 not implemented yet")
         elif choice == "3":
