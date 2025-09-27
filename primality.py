@@ -1,7 +1,7 @@
 """
 Input:          Integers 'n' and 'k'
 Outputs:        String "yes" if n is prime, "no" if composite
-Relations:      Tests if integer n is prime by first checking divisibility
+Relations:      Tests if integer n is probably prime by first checking divisibility
                 by small primes, then calling primality2 for Fermat test
 Pre-Conditions: n must be a positive integer, k must be positive
 
@@ -13,6 +13,15 @@ Pseudo-Code:
 
 """
 def primality3(n, k):
+
+    # constraints
+    if not isinstance(n, int) or not isinstance(k, int):
+        raise TypeError("primality3: n and k must be integers")
+    if k <= 0:
+        raise ValueError("primality3: k must be positive")
+    if n <= 1:
+        return "no" 
+
     # Handle small primes
     if n == 2 or n == 3 or n == 5 or n == 7 or n == 11:
         return "yes"
@@ -41,6 +50,12 @@ Pseudo-Code:
 """
 def primality2(n, k):
     import random
+
+    #constraints
+    if not isinstance(n, int) or not isinstance(k, int):
+        raise TypeError("primality2: n and k must be integers")
+    if k <= 0:
+        raise ValueError("primality2: k must be positive")
 
     # Repeat Fermat test k times
     for _ in range(k):
