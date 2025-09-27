@@ -1,6 +1,6 @@
 from fraction import hsum
 from primality import primality3, generate_random_prime
-from rsa import generate_rsa_keys
+from rsa import generate_rsa_keys, rsa_encrypt_decrypt_test
 
 def main():
     while True:
@@ -9,7 +9,8 @@ def main():
         print("2. Problem 2 (Primality Test)")
         print("3. Problem 3 (Generate Prime)")
         print("4. Problem 4 (RSA Key Generation)")
-        print("5. Quit")
+        print("5. Problem 5 (RSA Encrypt/Decrypt)")
+        print("6. Quit")
 
         choice = input("Enter option: ")
 
@@ -43,6 +44,15 @@ def main():
             print(f"D = {D} (decryption key)")
 
         elif choice == "5":
+            M = int(input("Enter message M: "))
+            n = int(input("Enter bit length for primes: "))
+            k = int(input("Enter confidence parameter k: "))
+            p, q, N, E, D = generate_rsa_keys(n, k)
+            print(f"Generated keys: p={p}, q={q}, N={N}, E={E}, D={D}")
+            print()
+            rsa_encrypt_decrypt_test(M, N, E, D)
+
+        elif choice == "6":
             break
         else:
             print("Invalid option")

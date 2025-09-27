@@ -17,7 +17,7 @@ Pseudo-Code:
     N = p * q
     phi = (p-1) * (q-1)
     find random 10-bit E where gcd(E, phi) = 1
-    find D where DE ≡ 1 (mod phi)
+    find D where DE congruent 1 (mod phi)
     return p, q, N, E, D
 
 """
@@ -36,7 +36,7 @@ def generate_rsa_keys(n, k):
         if gcd(E, phi) == 1:
             break
 
-    # Step 4: Find D using extended Euclidean algorithm where DE ≡ 1 (mod phi)
+    # Step 4: Find D using extended Euclidean algorithm where DE congruent 1 (mod phi)
     g, x, y = extended_gcd(E, phi)
     D = x if x >= 0 else x + phi
     
@@ -70,3 +70,67 @@ def extended_gcd(a, b):
     y = x1
 
     return gcd_val, x, y
+
+"""
+Input:          Integers 'M', 'E', and 'N'
+Outputs:        Integer ciphertext
+Relations:      Encrypts message M using RSA public key (E, N)
+                by computing M^E mod N
+Pre-Conditions: M must be less than N, E and N must be positive
+
+Pseudo-Code:
+
+    return M^E mod N
+
+"""
+def rsa_encrypt(M, E, N):
+    # RSA encryption: ciphertext = M^E mod N
+    return pow(M, E, N)
+
+"""
+Input:          Integers 'ciphertext', 'D', and 'N'
+Outputs:        Integer plaintext
+Relations:      Decrypts ciphertext using RSA private key (D, N)
+                by computing ciphertext^D mod N
+Pre-Conditions: ciphertext must be less than N, D and N must be positive
+
+Pseudo-Code:
+
+    return ciphertext^D mod N
+
+"""
+def rsa_decrypt(ciphertext, D, N):
+    # RSA decryption: plaintext = ciphertext^D mod N
+    return pow(ciphertext, D, N)
+
+"""
+Input:          Integers 'M', 'N', 'E', and 'D'
+Outputs:        Tuple (encrypted, decrypted, match_result)
+Relations:      Encrypts message M, then decrypts it, and checks if
+                the result matches the original message
+Pre-Conditions: M < N, all parameters must be positive integers
+
+Pseudo-Code:
+
+    encrypted = rsa_encrypt(M, E, N)
+    decrypted = rsa_decrypt(encrypted, D, N)
+    match = "yes" if decrypted == M else "no"
+    print results
+    return (encrypted, decrypted, match)
+
+"""
+def rsa_encrypt_decrypt_test(M, N, E, D):
+
+    encrypted = rsa_encrypt(M, E, N)
+
+
+    decrypted = rsa_decrypt(encrypted, D, N)
+
+    match = "yes" if decrypted == M else "no"
+
+    print(f"Original message: {M}")
+    print(f"Encrypted message: {encrypted}")
+    print(f"Decrypted message: {decrypted}")
+    print(f"Match: {match}")
+
+    return encrypted, decrypted, match

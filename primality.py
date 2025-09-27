@@ -37,7 +37,7 @@ def primality3(n, k):
 Input:          Integers 'n' and 'k'
 Outputs:        String "yes" if n passes Fermat test, "no" if composite
 Relations:      Performs k iterations of Fermat primality test by choosing
-                random values a and testing if a^(n-1) ≡ 1 (mod n)
+                random values a and testing if a^(n-1) congruent 1 (mod n)
 Pre-Conditions: n must be greater than 2, k must be positive
 
 Pseudo-Code:
@@ -62,7 +62,7 @@ def primality2(n, k):
         # Choose random a where 1 < a < n
         a = random.randint(2, n - 1)
 
-        # Test if a^(n-1) ≡ 1 (mod n)
+        # Test if a^(n-1) congruent 1 (mod n)
         if pow(a, n - 1, n) != 1:
             return "no"
 
