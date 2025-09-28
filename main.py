@@ -48,9 +48,12 @@ def main():
             n = int(input("Enter bit length for RSA primes (e.g. 8): "))
             k = int(input("Enter confidence parameter k (higher = more accurate): "))
             p, q, N, E, D = generate_rsa_keys(n, k)
-            print(f"Generated keys: p={p}, q={q}, N={N}, E={E}, D={D}")
+            print(f"\nGenerated keys: p={p}, q={q}, N={N}, E={E}, D={D}")
             print()
-            rsa_encrypt_decrypt_test(M, N, E, D)
+            if M >= N:
+                print(f"Error: Message M must be less than N ({N}).")
+            else:
+                rsa_encrypt_decrypt_test(M, N, E, D)
 
         elif choice == "6":
             break
