@@ -7,10 +7,8 @@ def main():
         print("\nMake selection:\n")
         print("1. Problem 1 (Fractions)")
         print("2. Problem 2 (Primality Test)")
-        print("3. Problem 3 (Generate Prime)")
-        print("4. Problem 4 (RSA Key Generation)")
-        print("5. Problem 5 (RSA Encrypt/Decrypt)")
-        print("6. Quit")
+        print("3. Problem 5 (RSA Encrypt/Decrypt)")
+        print("4. Quit")
 
         choice = input("Enter option: ")
 
@@ -28,22 +26,6 @@ def main():
             print("Prime?" , result)
 
         elif choice == "3":
-            nbits = int(input("Enter bit length for prime (e.g. 8 for 8-bit prime): "))
-            k = int(input("Enter confidence parameter k (higher = more accurate): "))
-            p = generate_random_prime(nbits, k)
-            print("Random prime:", p)
-
-        elif choice == "4":
-            n = int(input("Enter bit length for RSA primes (e.g. 8): "))
-            k = int(input("Enter confidence parameter k (higher = more accurate): "))
-            p, q, N, E, D = generate_rsa_keys(n, k)
-            print(f"p = {p} (first prime)")
-            print(f"q = {q} (second prime)")
-            print(f"N = {N} (modulus)")
-            print(f"E = {E} (encryption key)")
-            print(f"D = {D} (decryption key)")
-
-        elif choice == "5":
             M = int(input("Enter message M (integer, must be < N): "))
             n = int(input("Enter bit length for RSA primes (e.g. 8): "))
             k = int(input("Enter confidence parameter k (higher = more accurate): "))
@@ -55,7 +37,7 @@ def main():
             else:
                 rsa_encrypt_decrypt_test(M, N, E, D)
 
-        elif choice == "6":
+        elif choice == "4":
             break
         else:
             print("Invalid option")
